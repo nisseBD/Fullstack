@@ -1,0 +1,23 @@
+h1 {     
+    text-align: center;     
+    margin-top: 150px; 
+}  
+
+#superkraft {     
+    text-align: center; 
+}  
+
+body {     
+    background-image: url("images/bakgrundsbild.png");     
+    background-repeat: no-repeat;     
+    background-attachment: fixed;     
+    background-size: 1920px 1080px; 
+}  
+
+#meny {     
+    margin-top: 200px; 
+}  
+
+#dababy {     
+    font-size: 150px; 
+}
