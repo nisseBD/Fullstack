@@ -1,6 +1,6 @@
 h1 {     
     text-align: center;     
-    margin-top: 150px; 
+    margin-top: 50px; 
 }  
 
 #superkraft {     
@@ -8,7 +8,7 @@ h1 {
 }  
 
 body {     
-    background-image: url("images/bakgrundsbild.png");     
+    background-image: "images/bakgrundsbild.png";     
     background-repeat: no-repeat;     
     background-attachment: fixed;     
     background-size: 1920px 1080px; 
@@ -20,4 +20,9 @@ body {
 
 #dababy {     
     font-size: 150px; 
+}
+
+#korv {
+    text-align: center;
+    display: hidden;
 }

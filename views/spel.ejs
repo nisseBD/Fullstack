@@ -11,7 +11,9 @@
 
 <body>
 
-
+    <p id="korv">
+        <%= username %>
+    </p>
     <h1 id="superkraft" style="display: none;">DABABYPOWER REDO!! (tryck spacebar)</h1>
 
     <script src="http://koda.nu/simple.js">
@@ -24,6 +26,7 @@
                 x.style.display = "none";
             }
         }
+
         // När gameover blir true är spelet över
         var gameover = false;
         // När immun är över 0 så är man immun
@@ -31,7 +34,7 @@
         // Efter 500 frames så kan man använda sin superkraft
         var kraft = 500;
         // Varje dababy som spawnar efter de fem första är de poängen man får
-        var poäng = 0;
+        var points = 0;
         // Antalet dababys i början
         var number = 5;
         // Efter 50 frames spawnar en till dababy
@@ -62,34 +65,54 @@
             // Funktion som rensar ritytan 
             clearScreen();
             // Detta händer när gameover blir true
+
             if (gameover) {
-                text(500, 300, 100, "Dababy won!", "black")
-                text(800, 400, 50, "Poäng: " + poäng, "black")
-                text(700, 500, 25, "Tryck R för att starta om")
-                text(600, 600, 25, "Tryck M för att komma till menyn")
+                text(250, 150, 100, "Dababy won!", "black")
+                text(500, 300, 50, "Poäng: " + points, "black")
+                text(400, 375, 25, "Tryck R för att starta om")
+                text(325, 450, 25, "Tryck M för att komma till menyn")
+                text(250, 525, 25, "Tryck L för att komma till leaderboard!")
+                text(525, 575, 10, "Tryck S för att spara poäng")
                 // När man trycker på r så reloadar sidan
                 if (keyboard.r) {
                     location.reload();
                 }
                 // Redirectar en till index.html
                 if (keyboard.m) {
-                    window.location.replace("index.html")
+                    window.location.replace("/")
+                }
+
+                if (keyboard.l) {
+                    window.location.replace("/leaderboard")
                 }
                 // Om gameover är false så blir dessa variablerna 1 mindre per frame
+
+                if (keyboard.s) {
+                    var xhttp = new XMLHttpRequest();
+                    var apa = document.getElementById("korv").textContent;
+                    let json = JSON.stringify({
+                        user: apa,
+                        points: points
+                    });
+                    xhttp.open("POST", "leaderboard", true)
+                    xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+                    xhttp.send(json);
+                }
+
             } else {
                 immun -= 1;
                 kraft -= 1;
                 timer -= 1;
             }
             // Text för poängsystemet
-            text(0, 40, 30, "Poäng: " + poäng, "black")
+            text(0, 40, 30, "Poäng: " + points, "black")
 
 
             // När timer når 0 så kommer en ny dababy och tiden resettar
             if (timer == 0) {
                 timer = 50
                 number++
-                poäng++
+                points++
             };
             // Variabel som hjälper spelet att trycka ut dababys
             var i = 0;
@@ -125,7 +148,7 @@
                 };
                 // När man är immun så får man en stjärna på musen
                 if (immun > 0) {
-                    picture(mouse.x - 25, mouse.y - 25, "bild/immunestar.png", 50, 50);
+                    picture(mouse.x - 25, mouse.y - 25, "images/immunestar.png", 50, 50);
                 }
                 // När kraft står på 0 så visas en text som säger att superkraften är tillgänglig
                 if (kraft == 0) {

@@ -15,6 +15,8 @@ exports.saveUser = function (inUser, inPassword) {
     user.save();
 };
 
+
+
 exports.getUser = async function (Uuser) {
     return await User.findOne({ user: Uuser });
 }

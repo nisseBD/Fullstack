@@ -9,6 +9,13 @@
 </head>
 
 <body>
+    <form action="/registerUser" method="post">
+        <label for="user">Användarnamn:</label>
+        <input type="text" name="user" id="user">
+        <label for="password">Lösenord:</label>
+        <input type="password" name="password" id="password">
+        <button type="submit">Register</button>
+    </form>
     <form action="/login" method="post">
         <label for="user">Användarnamn:</label>
         <input type="text" name="user" id="user">
